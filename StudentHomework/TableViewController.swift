@@ -20,6 +20,7 @@ let idCell = "studentCell"
     //количество секций
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
+        
     }
     
     //название секции
