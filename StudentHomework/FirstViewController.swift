@@ -16,6 +16,7 @@ class FirstViewController: UIViewController{
     @IBAction func start(_ sender: Any) {
         let newVC = storyboard?.instantiateViewController(withIdentifier: "TableViewController")
        navigationController?.pushViewController(newVC!, animated: true)
+    
     }
     
   
