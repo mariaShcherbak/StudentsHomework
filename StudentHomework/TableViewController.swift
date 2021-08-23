@@ -6,16 +6,26 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
      
 let idCell = "studentCell"
     
-    @IBOutlet weak var tableViev: UITableView!
-    var students: [Student] = []
+    @IBOutlet weak var tableView: UITableView!
+    var students = [Student(name: "Olivia", surname: "King", image:              UIImage(named: "Olivia King.png")!),
+                               Student(name: "Freddy", surname: "Walker", image: UIImage(named: "Freddy Walker.png")!),
+                               Student(name: "Liam", surname: "Evans", image: UIImage(named: "Liam Evans.png")!),
+                               Student(name: "Jacob", surname: "Roberts", image: UIImage(named: "Jacob Roberts.png")!),
+                               Student(name: "Ethan", surname: "Mills", image: UIImage(named: "Ethan Mills.png")!),
+                               Student(name: "Alexander", surname: "Lewis", image: UIImage(named: "Alexander Lewis.png")!),
+                               Student(name: "Valery", surname: "Morgan", image: UIImage(named: "Valery Morgan.png")!),
+                               Student(name: "Vanessa", surname: "Florence", image: UIImage(named: "Vanessa Florence.png")!),
+                               Student(name: "Wendy", surname: "Campbell", image: UIImage(named: "Wendy Campbell.png")!),
+                               Student(name: "Amelia", surname: "Smith", image: UIImage(named: "Amelia Smith.png")!)]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableViev.dataSource = self
-        tableViev.delegate = self
-        students.append(Student(name: "Olivia", surname: "King", image: #imageLiteral(resourceName: "Olivia King")))
-        students.append(Student(name: "Freddy", surname: "Walker", image: #imageLiteral(resourceName: "Freddy Walker")))
-    }
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        }
+        
+    
     
     //количество секций
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -54,7 +64,7 @@ let idCell = "studentCell"
         print("\(indexPath.row)") // нажатие на ячейку
     }
     
-   
+
 }
 
 
@@ -66,4 +76,5 @@ struct Student {
     }
     var image: UIImage
 }
+
 
