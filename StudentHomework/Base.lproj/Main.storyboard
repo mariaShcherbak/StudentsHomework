@@ -47,8 +47,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="TableViewController" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Rjq-2o-aGb">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                             </tableView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vDC-cH-ELY">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Title" id="Yhb-G4-GeF"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -59,6 +66,8 @@
                             <constraint firstItem="Rjq-2o-aGb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="jeh-7h-8KA"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="Rjq-2o-aGb" id="DcR-po-ul3"/>
                     </connections>
@@ -66,6 +75,53 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1797.1014492753625" y="71.651785714285708"/>
+        </scene>
+        <!--Text Field View Controller-->
+        <scene sceneID="qDu-Ra-ApG">
+            <objects>
+                <viewController id="cGy-Kv-z3R" customClass="TextFieldViewController" customModule="StudentHomework" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9SO-d5-mRo" customClass="TextFieldViewController">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A3s-SC-cVl">
+                                <rect key="frame" x="20" y="324" width="374" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FGs-0o-37p">
+                                <rect key="frame" x="20" y="378" width="374" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zqL-2l-KBe">
+                                <rect key="frame" x="0.0" y="33" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Title" id="zPk-iP-m06"/>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="9Me-k8-3eP"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="FGs-0o-37p" firstAttribute="top" secondItem="A3s-SC-cVl" secondAttribute="bottom" constant="20" id="6XY-bL-HuA"/>
+                            <constraint firstItem="9Me-k8-3eP" firstAttribute="trailing" secondItem="FGs-0o-37p" secondAttribute="trailing" constant="20" id="9QF-uX-eTT"/>
+                            <constraint firstItem="9Me-k8-3eP" firstAttribute="bottom" secondItem="FGs-0o-37p" secondAttribute="bottom" constant="450" id="AXu-S0-pHU"/>
+                            <constraint firstItem="9Me-k8-3eP" firstAttribute="trailing" secondItem="A3s-SC-cVl" secondAttribute="trailing" constant="20" id="KcY-pQ-oVC"/>
+                            <constraint firstItem="A3s-SC-cVl" firstAttribute="leading" secondItem="9Me-k8-3eP" secondAttribute="leading" constant="20" id="NhT-t7-Z4q"/>
+                            <constraint firstItem="FGs-0o-37p" firstAttribute="leading" secondItem="9Me-k8-3eP" secondAttribute="leading" constant="20" id="YYA-bv-79r"/>
+                            <constraint firstItem="FGs-0o-37p" firstAttribute="centerX" secondItem="9SO-d5-mRo" secondAttribute="centerX" id="nsa-M6-pMF"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="bioTextField" destination="FGs-0o-37p" id="jX6-rq-HJB"/>
+                        <outlet property="nameTextField" destination="A3s-SC-cVl" id="4Uz-68-v6g"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w9Z-G8-vOX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1795.6521739130437" y="727.90178571428567"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8z1-40-55i">
