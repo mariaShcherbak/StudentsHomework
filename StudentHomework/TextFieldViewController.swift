@@ -11,8 +11,7 @@ class TextFieldViewController: UIViewController, UITextFieldDelegate{
     var delegate : StudentsList?
     
     func createStudent(students: Student)  {
-        let student: Student
-        
+        let student: Student //  тут нужно писать что-то типа      Student(name: nameTextField.text, bio: bioTextField.text, image:              ,,,)  ?????
         delegate!.makeStudentsList(student: students)
     }
     func makeStudentsList(student: Student) {

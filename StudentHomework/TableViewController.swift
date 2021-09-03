@@ -5,7 +5,7 @@ import UIKit
 class TableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, StudentsList {
     
     func createTextField() {
-        TextFieldViewController.delegate =
+        TextFieldViewController.delegate = self
     }
     func makeStudentsList(student: Student) {
         students.append.
