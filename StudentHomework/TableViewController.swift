@@ -2,7 +2,14 @@
 
 import UIKit
 
-class TableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, StudentsList {
+    
+    func createTextField() {
+        TextFieldViewController.delegate =
+    }
+    func makeStudentsList(student: Student) {
+        students.append.
+    }
      
 let idCell = "studentCell"
     
@@ -22,8 +29,8 @@ let idCell = "studentCell"
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-        let myButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addStudent))
-        navigationItem.rightBarButtonItem = myButton
+        let myAddButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addStudent))
+        navigationItem.rightBarButtonItem = myAddButton
         }
     @objc func addStudent () {
         let newVC = storyboard?.instantiateViewController(withIdentifier: "TextFieldViewController")
@@ -67,6 +74,8 @@ let idCell = "studentCell"
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("\(indexPath.row)") // нажатие на ячейку
     }
+    
+    
    /*
     @IBAction func add(_ sender: Any) {
         let newVC = storyboard?.instantiateViewController(withIdentifier: "TextViewController")
@@ -81,5 +90,7 @@ struct Student {
     var bio: String
     var image: UIImage
 }
-
+protocol StudentsList {
+    func makeStudentsList(student: Student)
+}
 

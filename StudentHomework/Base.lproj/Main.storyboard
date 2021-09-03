@@ -79,39 +79,45 @@
         <!--Text Field View Controller-->
         <scene sceneID="qDu-Ra-ApG">
             <objects>
-                <viewController id="cGy-Kv-z3R" customClass="TextFieldViewController" customModule="StudentHomework" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TextFieldViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cGy-Kv-z3R" customClass="TextFieldViewController" customModule="StudentHomework" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9SO-d5-mRo" customClass="TextFieldViewController">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A3s-SC-cVl">
-                                <rect key="frame" x="20" y="324" width="374" height="34"/>
+                                <rect key="frame" x="16" y="233" width="382" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FGs-0o-37p">
-                                <rect key="frame" x="20" y="378" width="374" height="34"/>
+                                <rect key="frame" x="16" y="287" width="382" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zqL-2l-KBe">
-                                <rect key="frame" x="0.0" y="33" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <navigationBar contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zqL-2l-KBe">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <items>
-                                    <navigationItem title="Title" id="zPk-iP-m06"/>
+                                    <navigationItem title="Title" id="zPk-iP-m06">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="lkF-LS-fuF">
+                                            <connections>
+                                                <action selector="saveButton:" destination="9SO-d5-mRo" id="q2t-Pg-RsH"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="9Me-k8-3eP"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="FGs-0o-37p" firstAttribute="top" secondItem="A3s-SC-cVl" secondAttribute="bottom" constant="20" id="6XY-bL-HuA"/>
-                            <constraint firstItem="9Me-k8-3eP" firstAttribute="trailing" secondItem="FGs-0o-37p" secondAttribute="trailing" constant="20" id="9QF-uX-eTT"/>
-                            <constraint firstItem="9Me-k8-3eP" firstAttribute="bottom" secondItem="FGs-0o-37p" secondAttribute="bottom" constant="450" id="AXu-S0-pHU"/>
-                            <constraint firstItem="9Me-k8-3eP" firstAttribute="trailing" secondItem="A3s-SC-cVl" secondAttribute="trailing" constant="20" id="KcY-pQ-oVC"/>
-                            <constraint firstItem="A3s-SC-cVl" firstAttribute="leading" secondItem="9Me-k8-3eP" secondAttribute="leading" constant="20" id="NhT-t7-Z4q"/>
-                            <constraint firstItem="FGs-0o-37p" firstAttribute="leading" secondItem="9Me-k8-3eP" secondAttribute="leading" constant="20" id="YYA-bv-79r"/>
-                            <constraint firstItem="FGs-0o-37p" firstAttribute="centerX" secondItem="9SO-d5-mRo" secondAttribute="centerX" id="nsa-M6-pMF"/>
+                            <constraint firstItem="FGs-0o-37p" firstAttribute="leading" secondItem="9Me-k8-3eP" secondAttribute="leading" constant="16" id="1G8-UD-6hp"/>
+                            <constraint firstItem="9Me-k8-3eP" firstAttribute="trailing" secondItem="FGs-0o-37p" secondAttribute="trailing" constant="16" id="3pZ-eM-sIv"/>
+                            <constraint firstItem="9Me-k8-3eP" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="FGs-0o-37p" secondAttribute="bottom" constant="30" id="AEt-TE-vpn"/>
+                            <constraint firstItem="A3s-SC-cVl" firstAttribute="top" secondItem="zqL-2l-KBe" secondAttribute="bottom" constant="145" id="DsT-0U-IdV"/>
+                            <constraint firstItem="FGs-0o-37p" firstAttribute="top" secondItem="A3s-SC-cVl" secondAttribute="bottom" constant="20" id="FMC-vE-VSi"/>
+                            <constraint firstItem="9Me-k8-3eP" firstAttribute="trailing" secondItem="A3s-SC-cVl" secondAttribute="trailing" constant="16" id="L0I-jJ-HwP"/>
+                            <constraint firstItem="zqL-2l-KBe" firstAttribute="top" secondItem="9Me-k8-3eP" secondAttribute="top" id="cx3-ig-5jt"/>
+                            <constraint firstItem="A3s-SC-cVl" firstAttribute="leading" secondItem="9Me-k8-3eP" secondAttribute="leading" constant="16" id="mjE-cF-hmf"/>
                         </constraints>
                     </view>
                     <connections>
