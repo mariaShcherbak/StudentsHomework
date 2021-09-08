@@ -8,6 +8,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func makeStudentsList(student: Student) {
         studentsArray.append(student)
         
+        
     }
      
 let idCell = "studentCell"
@@ -30,6 +31,7 @@ let idCell = "studentCell"
         tableView.delegate = self
         let myAddButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addStudent))
         navigationItem.rightBarButtonItem = myAddButton
+        
         }
     @objc func addStudent () {
         let newVC = storyboard?.instantiateViewController(withIdentifier: "TextFieldViewController") as? TextFieldViewController

@@ -21,24 +21,7 @@ class TextFieldViewController: UIViewController, UITextFieldDelegate{
     
     @IBOutlet weak var bioTextField: UITextField!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        let mySaveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButton))
-        navigationItem.rightBarButtonItem = mySaveButton
-        }
-    @objc func saveButton () {
-        let newName = nameTextField.text ?? ""
-        let newBio = bioTextField.text ?? ""
-        let newImage = UIImage(named: "LiamEvans.png") ?? UIImage(named: "DefaultImage.png")!
-        newStudent = Student(name: newName, bio: newBio, image: newImage)
-        delegate?.makeStudentsList(student: newStudent!)
-        
-        let backVC = storyboard?.instantiateViewController(withIdentifier: "TableViewController")
-       navigationController?.pushViewController(backVC!, animated: true)
-        
-        
-    }
+    
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         true
@@ -62,15 +45,18 @@ func textFieldDidChangeSelection(_ textField: UITextField) {}
 
 func textFieldShouldReturn(_ textField: UITextField) -> Bool { true}// called when 'return' key pressed. return NO to ignore.
 
-  /*  @IBAction func saveButton(_ sender: Any) {
+   @IBAction func saveButton(_ sender: Any) {
         let newName = nameTextField.text ?? ""
         let newBio = bioTextField.text ?? ""
         let newImage = UIImage(named: "LiamEvans.png") ?? UIImage(named: "DefaultImage.png")!
         newStudent = Student(name: newName, bio: newBio, image: newImage)
+    print(newStudent)
         delegate?.makeStudentsList(student: newStudent!)
-        
+     let backVC = storyboard?.instantiateViewController(withIdentifier: "TableViewController")
+    navigationController?.pushViewController(backVC!, animated: true)
         }
-        */
+    
+        
     }
     
 

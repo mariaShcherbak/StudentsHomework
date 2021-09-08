@@ -94,19 +94,37 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Af3-e2-wbk">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="kYi-Hp-3iJ">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="lKq-BR-Qeh">
+                                            <connections>
+                                                <action selector="saveButton:" destination="cGy-Kv-z3R" id="DZg-gP-IpK"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="9Me-k8-3eP"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="FGs-0o-37p" firstAttribute="leading" secondItem="9Me-k8-3eP" secondAttribute="leading" constant="16" id="1G8-UD-6hp"/>
                             <constraint firstItem="9Me-k8-3eP" firstAttribute="trailing" secondItem="FGs-0o-37p" secondAttribute="trailing" constant="16" id="3pZ-eM-sIv"/>
+                            <constraint firstItem="Af3-e2-wbk" firstAttribute="trailing" secondItem="9Me-k8-3eP" secondAttribute="trailing" id="5oq-ZR-rhz"/>
                             <constraint firstItem="9Me-k8-3eP" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="FGs-0o-37p" secondAttribute="bottom" constant="30" id="AEt-TE-vpn"/>
                             <constraint firstItem="FGs-0o-37p" firstAttribute="top" secondItem="A3s-SC-cVl" secondAttribute="bottom" constant="20" id="FMC-vE-VSi"/>
+                            <constraint firstItem="Af3-e2-wbk" firstAttribute="top" secondItem="9Me-k8-3eP" secondAttribute="top" id="I8a-NO-6uq"/>
                             <constraint firstItem="9Me-k8-3eP" firstAttribute="trailing" secondItem="A3s-SC-cVl" secondAttribute="trailing" constant="16" id="L0I-jJ-HwP"/>
+                            <constraint firstItem="A3s-SC-cVl" firstAttribute="top" secondItem="Af3-e2-wbk" secondAttribute="bottom" constant="145" id="WDp-8u-PoS"/>
+                            <constraint firstItem="Af3-e2-wbk" firstAttribute="leading" secondItem="9Me-k8-3eP" secondAttribute="leading" id="kcD-gX-8JG"/>
                             <constraint firstItem="A3s-SC-cVl" firstAttribute="top" secondItem="9Me-k8-3eP" secondAttribute="top" constant="189" id="kcb-QG-uzc"/>
                             <constraint firstItem="A3s-SC-cVl" firstAttribute="leading" secondItem="9Me-k8-3eP" secondAttribute="leading" constant="16" id="mjE-cF-hmf"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="bioTextField" destination="FGs-0o-37p" id="jX6-rq-HJB"/>
                         <outlet property="nameTextField" destination="A3s-SC-cVl" id="4Uz-68-v6g"/>
