@@ -4,17 +4,16 @@ import UIKit
 
 class TableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, StudentsList {
     
-    func createTextField() {
-        TextFieldViewController.delegate = self
-    }
+    
     func makeStudentsList(student: Student) {
-        students.append.
+        studentsArray.append(student)
+        
     }
      
 let idCell = "studentCell"
     
     @IBOutlet weak var tableView: UITableView!
-    var students = [Student(name: "Olivia", bio: "born in 1992", image:              UIImage(named: "OliviaKing.png")!),
+    var studentsArray = [Student(name: "Olivia", bio: "born in 1992", image:              UIImage(named: "OliviaKing.png")!),
                     Student(name: "Freddy", bio: "born in 1991", image: UIImage(named: "FreddyWalker.png")!),
                                Student(name: "Liam", bio: "born in 1993", image: UIImage(named: "LiamEvans.png")!),
                                Student(name: "Jacob", bio: "born in 1991", image: UIImage(named: "JacobRoberts.png")!),
@@ -33,8 +32,10 @@ let idCell = "studentCell"
         navigationItem.rightBarButtonItem = myAddButton
         }
     @objc func addStudent () {
-        let newVC = storyboard?.instantiateViewController(withIdentifier: "TextFieldViewController")
+        let newVC = storyboard?.instantiateViewController(withIdentifier: "TextFieldViewController") as? TextFieldViewController
        navigationController?.pushViewController(newVC!, animated: true)
+        newVC!.delegate = self
+        
     }
     
     
@@ -52,7 +53,7 @@ let idCell = "studentCell"
     
     // количество ячеек в секции
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return students.count
+        return studentsArray.count
         }
     
     
@@ -64,7 +65,7 @@ let idCell = "studentCell"
     // заполнение ячеек
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: idCell)
-        let model = students[indexPath.row]
+        let model = studentsArray[indexPath.row]
         cell.textLabel?.text = model.name
         cell.detailTextLabel?.text = model.bio
         cell.imageView?.image = model.image
@@ -82,6 +83,7 @@ let idCell = "studentCell"
        navigationController?.pushViewController(newVC!, animated: true)
     }
    */
+
 }
 
 
@@ -90,7 +92,5 @@ struct Student {
     var bio: String
     var image: UIImage
 }
-protocol StudentsList {
-    func makeStudentsList(student: Student)
-}
+
 

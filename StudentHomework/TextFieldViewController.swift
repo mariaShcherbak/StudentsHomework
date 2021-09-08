@@ -7,20 +7,38 @@
 
 import UIKit
 
+protocol StudentsList {
+    func makeStudentsList(student: Student)
+}
+
 class TextFieldViewController: UIViewController, UITextFieldDelegate{
+   
     var delegate : StudentsList?
+    var newStudent: Student?
     
-    func createStudent(students: Student)  {
-        let student: Student //  тут нужно писать что-то типа      Student(name: nameTextField.text, bio: bioTextField.text, image:              ,,,)  ?????
-        delegate!.makeStudentsList(student: students)
-    }
-    func makeStudentsList(student: Student) {
-        
-    }
 
     @IBOutlet weak var nameTextField: UITextField!
     
     @IBOutlet weak var bioTextField: UITextField!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let mySaveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButton))
+        navigationItem.rightBarButtonItem = mySaveButton
+        }
+    @objc func saveButton () {
+        let newName = nameTextField.text ?? ""
+        let newBio = bioTextField.text ?? ""
+        let newImage = UIImage(named: "LiamEvans.png") ?? UIImage(named: "DefaultImage.png")!
+        newStudent = Student(name: newName, bio: newBio, image: newImage)
+        delegate?.makeStudentsList(student: newStudent!)
+        
+        let backVC = storyboard?.instantiateViewController(withIdentifier: "TableViewController")
+       navigationController?.pushViewController(backVC!, animated: true)
+        
+        
+    }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         true
@@ -28,9 +46,9 @@ class TextFieldViewController: UIViewController, UITextFieldDelegate{
 
     func textFieldDidBeginEditing(_ textField: UITextField) {}// became first responder
 
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {true}// return YES to allow editing to stop and to resign first responder status. NO to disallow the editing session to end
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {true}//
 
-    func textFieldDidEndEditing(_ textField: UITextField) {}// may be called if forced even if shouldEndEditing returns NO (e.g. view removed from window) or endEditing:YES called
+    func textFieldDidEndEditing(_ textField: UITextField) {}//
 
      func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {} // if implemented, called in place of textFieldDidEndEditing:
 
@@ -44,11 +62,18 @@ func textFieldDidChangeSelection(_ textField: UITextField) {}
 
 func textFieldShouldReturn(_ textField: UITextField) -> Bool { true}// called when 'return' key pressed. return NO to ignore.
 
-    @IBAction func saveButton(_ sender: Any) {
+  /*  @IBAction func saveButton(_ sender: Any) {
+        let newName = nameTextField.text ?? ""
+        let newBio = bioTextField.text ?? ""
+        let newImage = UIImage(named: "LiamEvans.png") ?? UIImage(named: "DefaultImage.png")!
+        newStudent = Student(name: newName, bio: newBio, image: newImage)
+        delegate?.makeStudentsList(student: newStudent!)
         
+        }
+        */
     }
     
-}
+
     
 
 
