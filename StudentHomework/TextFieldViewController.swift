@@ -68,14 +68,12 @@ func textFieldShouldReturn(_ textField: UITextField) -> Bool { true}// called wh
         
     }
     func imagePickerController(_: UIImagePickerController, didFinishPickingMediaWithInfo: [UIImagePickerController.InfoKey : Any]) {
-        print("choose")
         print(UIImagePickerController.InfoKey.editedImage)
         photoImage.image = didFinishPickingMediaWithInfo[.editedImage] as? UIImage
         dismiss(animated: true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(_: UIImagePickerController) {
-        print("cancel")
         dismiss(animated: true, completion: nil)
     }
     
