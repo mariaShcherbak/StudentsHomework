@@ -7,16 +7,18 @@
 
 import UIKit
 
-protocol StudentsList {
+protocol StudentsList: AnyObject {
     func makeStudentsList(student: Student)
 }
 
-class TextFieldViewController: UIViewController, UITextFieldDelegate{
+class TextFieldViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
    
-    var delegate : StudentsList?
+    weak var delegate : StudentsList?
     var newStudent: Student?
     
 
+    @IBOutlet weak var photoImage: UIImageView!
+    
     @IBOutlet weak var nameTextField: UITextField!
     
     @IBOutlet weak var bioTextField: UITextField!
@@ -50,13 +52,33 @@ func textFieldShouldReturn(_ textField: UITextField) -> Bool { true}// called wh
         let newBio = bioTextField.text ?? ""
         let newImage = UIImage(named: "LiamEvans.png") ?? UIImage(named: "DefaultImage.png")!
         newStudent = Student(name: newName, bio: newBio, image: newImage)
-    print(newStudent)
+    print(newStudent ?? "newStudent is nil")
         delegate?.makeStudentsList(student: newStudent!)
-     let backVC = storyboard?.instantiateViewController(withIdentifier: "TableViewController")
-    navigationController?.pushViewController(backVC!, animated: true)
+    
+    navigationController?.popViewController(animated: true)
         }
     
+    @IBAction func changePhoto(_ sender: UITapGestureRecognizer) {
+        print("Tab")
+        let picker = UIImagePickerController()
+        picker.sourceType = .savedPhotosAlbum
+        picker.allowsEditing = true
+        picker.delegate = self
+        self.present(picker, animated: true, completion: nil)
         
+    }
+    func imagePickerController(_: UIImagePickerController, didFinishPickingMediaWithInfo: [UIImagePickerController.InfoKey : Any]) {
+        print("choose")
+        print(UIImagePickerController.InfoKey.editedImage)
+        photoImage.image = didFinishPickingMediaWithInfo[.editedImage] as? UIImage
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_: UIImagePickerController) {
+        print("cancel")
+        dismiss(animated: true, completion: nil)
+    }
+    
     }
     
 

@@ -7,13 +7,13 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func makeStudentsList(student: Student) {
         studentsArray.append(student)
-        
-        
+        print("makeStudentsList!!!")
+        myTableView.reloadData()
     }
      
-let idCell = "studentCell"
+    let idCell = "studentCell"
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var myTableView: UITableView!
     var studentsArray = [Student(name: "Olivia", bio: "born in 1992", image:              UIImage(named: "OliviaKing.png")!),
                     Student(name: "Freddy", bio: "born in 1991", image: UIImage(named: "FreddyWalker.png")!),
                                Student(name: "Liam", bio: "born in 1993", image: UIImage(named: "LiamEvans.png")!),
@@ -27,8 +27,8 @@ let idCell = "studentCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.dataSource = self
-        tableView.delegate = self
+        myTableView.dataSource = self
+        myTableView.delegate = self
         let myAddButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addStudent))
         navigationItem.rightBarButtonItem = myAddButton
         
@@ -37,6 +37,7 @@ let idCell = "studentCell"
         let newVC = storyboard?.instantiateViewController(withIdentifier: "TextFieldViewController") as? TextFieldViewController
        navigationController?.pushViewController(newVC!, animated: true)
         newVC!.delegate = self
+        
         
     }
     
@@ -60,7 +61,7 @@ let idCell = "studentCell"
     
     
     // размер ячейки
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) -> CGFloat {
+    private func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) -> CGFloat {
         return 100.0
     }
     
