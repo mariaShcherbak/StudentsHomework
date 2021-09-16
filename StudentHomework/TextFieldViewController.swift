@@ -47,14 +47,21 @@ func textFieldDidChangeSelection(_ textField: UITextField) {}
 
 func textFieldShouldReturn(_ textField: UITextField) -> Bool { true}// called when 'return' key pressed. return NO to ignore.
 
-   @IBAction func saveButton(_ sender: Any) {
+    @IBAction func saveButton(_ sender: Any) {
         let newName = nameTextField.text ?? ""
         let newBio = bioTextField.text ?? ""
-        let newImage = UIImage(named: "LiamEvans.png") ?? UIImage(named: "DefaultImage.png")!
+        let newImage = photoImage.image ?? UIImage(named: "DefaultImage.png")!
         newStudent = Student(name: newName, bio: newBio, image: newImage)
     print(newStudent ?? "newStudent is nil")
+    if newStudent?.name != "" && newStudent?.bio != "" {
         delegate?.makeStudentsList(student: newStudent!)
-    
+    } else {
+        let alertController = UIAlertController(title: "Упс", message: "нужно заполнить все поля", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Понятно", style: .default) { (action) in
+        }
+        alertController.addAction(action)
+        self.present(alertController, animated: true, completion: nil)
+    }
     navigationController?.popViewController(animated: true)
         }
     

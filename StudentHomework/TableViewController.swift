@@ -2,6 +2,7 @@
 
 import UIKit
 
+
 class TableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, StudentsList {
     
     
@@ -11,9 +12,10 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         myTableView.reloadData()
     }
      
-    let idCell = "studentCell"
+    
     
     @IBOutlet weak var myTableView: UITableView!
+    
     var studentsArray = [Student(name: "Olivia", bio: "born in 1992", image:              UIImage(named: "OliviaKing.png")!),
                     Student(name: "Freddy", bio: "born in 1991", image: UIImage(named: "FreddyWalker.png")!),
                                Student(name: "Liam", bio: "born in 1993", image: UIImage(named: "LiamEvans.png")!),
@@ -27,11 +29,18 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let search = UISearchController(searchResultsController: nil)
+        navigationItem.searchController = search
+        navigationItem.hidesSearchBarWhenScrolling = false
         myTableView.dataSource = self
         myTableView.delegate = self
+        
+        myTableView.register(TableViewCell.self, forCellReuseIdentifier: TableViewCell.idCell)
+        
+        
         let myAddButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addStudent))
         navigationItem.rightBarButtonItem = myAddButton
-        
+       
         }
     @objc func addStudent () {
         let newVC = storyboard?.instantiateViewController(withIdentifier: "TextFieldViewController") as? TextFieldViewController
@@ -50,7 +59,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     //название секции
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Students"
+        return ""
     }
     
     
@@ -67,25 +76,18 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // заполнение ячеек
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: idCell)
+        let cell = myTableView.dequeueReusableCell(withIdentifier: TableViewCell.idCell, for: indexPath) as! TableViewCell
         let model = studentsArray[indexPath.row]
-        cell.textLabel?.text = model.name
-        cell.detailTextLabel?.text = model.bio
-        cell.imageView?.image = model.image
+        cell.nameCell?.text = model.name
+        cell.bioCell?.text = model.bio
+        cell.imageCell?.image = model.image
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("\(indexPath.row)") // нажатие на ячейку
     }
-    
-    
-   /*
-    @IBAction func add(_ sender: Any) {
-        let newVC = storyboard?.instantiateViewController(withIdentifier: "TextViewController")
-       navigationController?.pushViewController(newVC!, animated: true)
-    }
-   */
+
 
 }
 
