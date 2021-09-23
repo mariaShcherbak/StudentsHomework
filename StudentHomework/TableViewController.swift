@@ -20,7 +20,7 @@ class TableViewController: UIViewController, UITableViewDelegate, StudentsList {
     
     var studentsArray = [Student(name: "Olivia", bio: "born in 1992", image:              UIImage(named: "OliviaKing.png")!),
                     Student(name: "Freddy", bio: "born in 1991", image: UIImage(named: "FreddyWalker.png")!),
-                               Student(name: "Liam", bio: "born in 1993", image: UIImage(named: "LiamEvans.png")!),
+                               Student(name: "liam", bio: "born in 1993", image: UIImage(named: "LiamEvans.png")!),
                                Student(name: "Jacob", bio: "born in 1991", image: UIImage(named: "JacobRoberts.png")!),
                                Student(name: "Ethan", bio: "born in 1992", image: UIImage(named: "EthanMills.png")!),
                                Student(name: "Alexander", bio: "born in 1993", image: UIImage(named: "AlexanderLewis.png")!),
@@ -95,6 +95,7 @@ extension TableViewController : UITableViewDataSource {
     // количество ячеек в секции
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return studentsArray.count
+        //
         }
     
     // заполнение ячеек
