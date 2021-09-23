@@ -3,7 +3,7 @@
 import UIKit
 
 
-class TableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, StudentsList {
+class TableViewController: UIViewController, UITableViewDelegate, StudentsList {
     
     
     func makeStudentsList(student: Student) {
@@ -11,8 +11,10 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         print("makeStudentsList!!!")
         myTableView.reloadData()
     }
-     
-    
+   /* func bidNavigationBar() {
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    */
     
     @IBOutlet weak var myTableView: UITableView!
     
@@ -29,14 +31,15 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+     //   bidNavigationBar()
+        myTableView.rowHeight = 94
         let search = UISearchController(searchResultsController: nil)
         navigationItem.searchController = search
         navigationItem.hidesSearchBarWhenScrolling = false
         myTableView.dataSource = self
-        myTableView.delegate = self
+        //myTableView.delegate = self
         
-        myTableView.register(TableViewCell.self, forCellReuseIdentifier: TableViewCell.idCell)
-        
+        //myTableView.register(TableViewCell.self, forCellReuseIdentifier: TableViewCell.idCell)
         
         let myAddButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addStudent))
         navigationItem.rightBarButtonItem = myAddButton
@@ -63,10 +66,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     
-    // количество ячеек в секции
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return studentsArray.count
-        }
+    
     
     
     // размер ячейки
@@ -74,15 +74,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return 100.0
     }
     
-    // заполнение ячеек
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = myTableView.dequeueReusableCell(withIdentifier: TableViewCell.idCell, for: indexPath) as! TableViewCell
-        let model = studentsArray[indexPath.row]
-        cell.nameCell?.text = model.name
-        cell.bioCell?.text = model.bio
-        cell.imageCell?.image = model.image
-        return cell
-    }
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("\(indexPath.row)") // нажатие на ячейку
@@ -99,3 +91,21 @@ struct Student {
 }
 
 
+extension TableViewController : UITableViewDataSource {
+    // количество ячеек в секции
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return studentsArray.count
+        }
+    
+    // заполнение ячеек
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = myTableView.dequeueReusableCell(withIdentifier: "studentCell") as! TableViewCell
+        
+        let model = studentsArray[indexPath.row]
+        cell.nameCell?.text = model.name
+        cell.bioCell?.text = model.bio
+        cell.imageCell?.image = model.image
+        return cell
+    }
+    
+}
