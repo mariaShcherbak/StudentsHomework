@@ -106,6 +106,8 @@ extension TableViewController : UITableViewDataSource {
         cell.nameCell?.text = model.name
         cell.bioCell?.text = model.bio
         cell.imageCell?.image = model.image
+        cell.imageCell.layer.cornerRadius = cell.imageCell.frame.size.height / 2
+        cell.imageCell.clipsToBounds = true
         return cell
     }
     

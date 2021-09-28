@@ -24,7 +24,12 @@ class TextFieldViewController: UIViewController, UITextFieldDelegate, UIImagePic
     @IBOutlet weak var bioTextField: UITextField!
     
     
-    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        photoImage.layer.cornerRadius = photoImage.frame.size.width / 2
+        photoImage.clipsToBounds = true
+        
+    }
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         true
     } // верните NO, чтобы запретить редактирование
