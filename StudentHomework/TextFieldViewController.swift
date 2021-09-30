@@ -9,10 +9,12 @@ import UIKit
 
 protocol StudentsList: AnyObject {
     func makeStudentsList(student: Student)
+    func updateStudent(_ student: Student, atIndex: Int)
 }
 
 class TextFieldViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-   
+
+    var studentIndex: Int?
     weak var delegate : StudentsList?
     var newStudent: Student?
     
@@ -29,7 +31,12 @@ class TextFieldViewController: UIViewController, UITextFieldDelegate, UIImagePic
         photoImage.layer.cornerRadius = photoImage.frame.size.width / 2
         photoImage.clipsToBounds = true
         
+        bioTextField.text = newStudent?.bio
+        nameTextField.text = newStudent?.name
+        photoImage.image = newStudent?.image
+        nameTextField.placeholder = "Name"
     }
+    
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         true
     } // верните NO, чтобы запретить редактирование
@@ -59,7 +66,11 @@ func textFieldShouldReturn(_ textField: UITextField) -> Bool { true}// called wh
         newStudent = Student(name: newName, bio: newBio, image: newImage)
     print(newStudent ?? "newStudent is nil")
     if newStudent?.name != "" && newStudent?.bio != "" {
-        delegate?.makeStudentsList(student: newStudent!)
+        if let index = studentIndex {
+            delegate?.updateStudent(newStudent!, atIndex: index)
+        } else {
+            delegate?.makeStudentsList(student: newStudent!)
+        }
     } else {
         let alertController = UIAlertController(title: "Упс", message: "нужно заполнить все поля", preferredStyle: .alert)
         let action = UIAlertAction(title: "Понятно", style: .default) { (action) in
@@ -68,7 +79,7 @@ func textFieldShouldReturn(_ textField: UITextField) -> Bool { true}// called wh
         self.present(alertController, animated: true, completion: nil)
     }
     navigationController?.popViewController(animated: true)
-        }
+    }
     
     @IBAction func changePhoto(_ sender: UITapGestureRecognizer) {
         print("Tab")

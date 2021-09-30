@@ -11,6 +11,11 @@ class TableViewController: UIViewController, UITableViewDelegate, StudentsList {
         print("makeStudentsList!!!")
         myTableView.reloadData()
     }
+    
+    func updateStudent(_ student: Student, atIndex: Int) {
+        studentsArray[atIndex] = student
+        myTableView.reloadData()
+    }
    /* func bidNavigationBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
     }
@@ -37,7 +42,7 @@ class TableViewController: UIViewController, UITableViewDelegate, StudentsList {
         navigationItem.searchController = search
         navigationItem.hidesSearchBarWhenScrolling = false
         myTableView.dataSource = self
-        //myTableView.delegate = self
+        myTableView.delegate = self
         
         //myTableView.register(TableViewCell.self, forCellReuseIdentifier: TableViewCell.idCell)
         
@@ -78,6 +83,11 @@ class TableViewController: UIViewController, UITableViewDelegate, StudentsList {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("\(indexPath.row)") // нажатие на ячейку
+        let newVC = storyboard?.instantiateViewController(withIdentifier: "TextFieldViewController") as? TextFieldViewController
+       navigationController?.pushViewController(newVC!, animated: true)
+        newVC!.delegate = self
+        newVC?.newStudent = studentsArray[indexPath.row]
+        newVC?.studentIndex = indexPath.row
     }
 
 
@@ -110,5 +120,4 @@ extension TableViewController : UITableViewDataSource {
         cell.imageCell.clipsToBounds = true
         return cell
     }
-    
 }
