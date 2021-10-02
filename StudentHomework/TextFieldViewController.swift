@@ -35,6 +35,7 @@ class TextFieldViewController: UIViewController, UITextFieldDelegate, UIImagePic
         nameTextField.text = newStudent?.name
         photoImage.image = newStudent?.image
         nameTextField.placeholder = "Name"
+        bioTextField.placeholder = "Short bio"
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
