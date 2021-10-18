@@ -18,7 +18,8 @@ class TextFieldViewController: UIViewController, UITextFieldDelegate, UIImagePic
     weak var delegate : StudentsList?
     var newStudent: Student?
     
-
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     @IBOutlet weak var photoImage: UIImageView!
     
     @IBOutlet weak var nameTextField: UITextField!
@@ -28,15 +29,57 @@ class TextFieldViewController: UIViewController, UITextFieldDelegate, UIImagePic
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       registerForKeyboardNotification()
+        
         photoImage.layer.cornerRadius = photoImage.frame.size.width / 2
         photoImage.clipsToBounds = true
         
         bioTextField.text = newStudent?.bio
         nameTextField.text = newStudent?.name
         photoImage.image = newStudent?.image
-        nameTextField.placeholder = "Name"
-        bioTextField.placeholder = "Short bio"
+        nameTextField.placeholder = "  Name"
+        bioTextField.placeholder = " Short bio"
     }
+
+   deinit {
+      removeKeyboardNotifications()
+    }
+    // получить 
+    
+    // Двигать контент клавиатурой
+    func registerForKeyboardNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(kbWillShow), name: UIResponder.keyboardWillShowNotification, object: nil )
+        NotificationCenter.default.addObserver(self, selector: #selector(kbWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+     //удаление Notification
+   func removeKeyboardNotifications() {
+    NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+   
+    //смещение на величину (?????????)
+    @objc func kbWillShow(_ notification: Notification) {
+        let userInfosize = notification.userInfo
+       
+        guard let userInfo = notification.userInfo,
+                      let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
+        if bioTextField.frame.origin.y < (CGFloat(keyboardSize.height) + (bioTextField.frame.size.height)) {
+        self.scrollView.frame.origin.y = -(bioTextField.frame.size.height)
+    }
+        else {
+            self.scrollView.frame.origin.y = 0
+            
+        }
+    }
+    
+    @objc func kbWillHide () {
+        self.scrollView.frame.origin.y = 0
+    }
+    
+    
+    
+    
+    
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         true

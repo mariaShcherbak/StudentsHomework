@@ -61,7 +61,6 @@ class TableViewController: UIViewController, UITableViewDelegate, StudentsList {
         myTableView.dataSource = self
         myTableView.delegate = self
         
-        //myTableView.register(TableViewCell.self, forCellReuseIdentifier: TableViewCell.idCell)
         
         let myAddButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addStudent))
         navigationItem.rightBarButtonItem = myAddButton
@@ -133,7 +132,6 @@ extension TableViewController : UITableViewDataSource {
            return filteredStudentsArray.count
         }
         return studentsArray.count
-        //
         }
     
     // заполнение ячеек
