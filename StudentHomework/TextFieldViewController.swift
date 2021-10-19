@@ -26,6 +26,7 @@ class TextFieldViewController: UIViewController, UITextFieldDelegate, UIImagePic
     
     @IBOutlet weak var bioTextField: UITextField!
     
+    @IBOutlet weak var bioConstraintTopToView: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,19 +58,18 @@ class TextFieldViewController: UIViewController, UITextFieldDelegate, UIImagePic
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
    
-    //смещение на величину (?????????)
+    //смещение на величину
     @objc func kbWillShow(_ notification: Notification) {
         let userInfosize = notification.userInfo
        
         guard let userInfo = notification.userInfo,
                       let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
-        if bioTextField.frame.origin.y < (CGFloat(keyboardSize.height) + (bioTextField.frame.size.height)) {
-        self.scrollView.frame.origin.y = -(bioTextField.frame.size.height)
-    }
-        else {
-            self.scrollView.frame.origin.y = 0
-            
+        let keyBoardY = UIScreen.main.bounds.size.height - keyboardSize.height
+        if keyBoardY < (bioConstraintTopToView.constant + bioTextField.frame.size.height*2) {
+        
+        scrollView.contentOffset = CGPoint(x: 0, y: bioTextField.frame.size.height)
         }
+        
     }
     
     @objc func kbWillHide () {

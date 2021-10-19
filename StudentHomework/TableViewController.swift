@@ -75,6 +75,14 @@ class TableViewController: UIViewController, UITableViewDelegate, StudentsList {
     }
     
     
+    @IBAction func showCellNumber(_ sender: UIButton) {
+        let point = myTableView.convert(CGPoint.zero, from: sender)
+        let indexPath = myTableView.indexPathForRow(at: point)
+        let numberCell = indexPath![1] + 1
+        print(numberCell)
+            }
+    
+    
     //количество секций
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -98,7 +106,7 @@ class TableViewController: UIViewController, UITableViewDelegate, StudentsList {
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("\(indexPath.row)") // нажатие на ячейку
+        print("\(indexPath.row)") //нажатие на ячейку
         let newVC = storyboard?.instantiateViewController(withIdentifier: "TextFieldViewController") as? TextFieldViewController
        navigationController?.pushViewController(newVC!, animated: true)
         newVC!.delegate = self
