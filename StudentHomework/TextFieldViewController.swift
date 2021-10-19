@@ -67,7 +67,10 @@ class TextFieldViewController: UIViewController, UITextFieldDelegate, UIImagePic
         let keyBoardY = UIScreen.main.bounds.size.height - keyboardSize.height
         if keyBoardY < (bioConstraintTopToView.constant + bioTextField.frame.size.height*2) {
         
-        scrollView.contentOffset = CGPoint(x: 0, y: bioTextField.frame.size.height)
+            // величина смещения контента
+            let displace = UIScreen.main.bounds.size.height - (keyboardSize.height + bioConstraintTopToView.constant + bioTextField.frame.size.height)
+            scrollView.frame.origin.y = displace
+            // scrollView.contentOffset = CGPoint(x: 0, y: bioTextField.frame.size.height)
         }
         
     }
