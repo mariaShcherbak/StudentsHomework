@@ -28,18 +28,6 @@ class TextFieldViewController: UIViewController, UITextFieldDelegate, UIImagePic
     
     @IBOutlet weak var bioConstraintTopToView: NSLayoutConstraint!
     
-    @IBAction func tabKeyAction(_ sender: UITapGestureRecognizer) {
-        self.view.endEditing(true)
-    }
-    
-    @IBAction func returnName(_ sender: UITextField) {
-        sender.resignFirstResponder()
-    }
-    
-    @IBAction func returnBio(_ sender: UITextField) {
-        sender.resignFirstResponder()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
        registerForKeyboardNotification()
@@ -54,28 +42,36 @@ class TextFieldViewController: UIViewController, UITextFieldDelegate, UIImagePic
         bioTextField.placeholder = " Short bio"
      
         UIScrollView.KeyboardDismissMode.onDrag
-     
-        
     }
-
-   deinit {
-      removeKeyboardNotifications()
-    }
-   
     
+    deinit {
+       removeKeyboardNotifications()
+     }
+    
+    
+    @IBAction func tabKeyAction(_ sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
+    }
+    
+    @IBAction func returnName(_ sender: UITextField) {
+        sender.resignFirstResponder()
+    }
+    
+    @IBAction func returnBio(_ sender: UITextField) {
+        sender.resignFirstResponder()
+    }
     
     func registerForKeyboardNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(kbWillShow), name: UIResponder.keyboardWillShowNotification, object: nil )
         NotificationCenter.default.addObserver(self, selector: #selector(kbWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
+    
      //удаление Notification
    func removeKeyboardNotifications() {
     NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
    
-   
-    
     //смещение на величину
     @objc func kbWillShow(_ notification: Notification) {
         
@@ -95,13 +91,10 @@ class TextFieldViewController: UIViewController, UITextFieldDelegate, UIImagePic
         
     }
     
-    
     @objc func kbWillHide () {
         
         self.scrollView.frame.origin.y = 0
     }
-    
-
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         true
@@ -115,14 +108,11 @@ class TextFieldViewController: UIViewController, UITextFieldDelegate, UIImagePic
 
      func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {} // if implemented, called in place of textFieldDidEndEditing:
 
-    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {true}// return NO to not change text
 
-func textFieldDidChangeSelection(_ textField: UITextField) {}
+    func textFieldDidChangeSelection(_ textField: UITextField) {}
 
-    
     func textFieldShouldClear(_ textField: UITextField) -> Bool {true}// called when clear button pressed. return NO to ignore (no notifications)
-
 
     @IBAction func saveButton(_ sender: Any) {
         let newName = nameTextField.text ?? ""
@@ -155,6 +145,7 @@ func textFieldDidChangeSelection(_ textField: UITextField) {}
         self.present(picker, animated: true, completion: nil)
         
     }
+    
     func imagePickerController(_: UIImagePickerController, didFinishPickingMediaWithInfo: [UIImagePickerController.InfoKey : Any]) {
         print(UIImagePickerController.InfoKey.editedImage)
         photoImage.image = didFinishPickingMediaWithInfo[.editedImage] as? UIImage
@@ -165,7 +156,7 @@ func textFieldDidChangeSelection(_ textField: UITextField) {}
         dismiss(animated: true, completion: nil)
     }
     
-    }
+}
     
 
     
