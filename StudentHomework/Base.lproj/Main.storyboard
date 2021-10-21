@@ -175,6 +175,10 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="returnName:" destination="cGy-Kv-z3R" eventType="primaryActionTriggered" id="UFf-1E-O6z"/>
+                                                    <action selector="returnName:" destination="cGy-Kv-z3R" eventType="editingDidEnd" id="Xfw-DI-rgB"/>
+                                                </connections>
                                             </textField>
                                             <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="DefaultImage" translatesAutoresizingMaskIntoConstraints="NO" id="UPs-yU-qYM">
                                                 <rect key="frame" x="158" y="107" width="110" height="110"/>
@@ -200,9 +204,13 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="returnBio:" destination="cGy-Kv-z3R" eventType="primaryActionTriggered" id="EUT-Ze-XN2"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstItem="FGs-0o-37p" firstAttribute="top" secondItem="A3s-SC-cVl" secondAttribute="bottom" id="2Yd-IC-1qy"/>
                                             <constraint firstItem="A3s-SC-cVl" firstAttribute="leading" secondItem="feo-Rm-SnY" secondAttribute="leading" id="3ff-1X-U03"/>
@@ -215,6 +223,9 @@
                                             <constraint firstAttribute="trailing" secondItem="FGs-0o-37p" secondAttribute="trailing" id="Tew-b0-tiV"/>
                                             <constraint firstItem="FGs-0o-37p" firstAttribute="top" secondItem="feo-Rm-SnY" secondAttribute="top" constant="294" id="ayB-hy-iE5"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="7CA-Ld-Vac" appends="YES" id="yPd-fO-DGq"/>
+                                        </connections>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -252,6 +263,11 @@
                 <tapGestureRecognizer id="6Dh-hU-Saw">
                     <connections>
                         <action selector="changePhoto:" destination="cGy-Kv-z3R" id="0Wg-OR-vgw"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="7CA-Ld-Vac">
+                    <connections>
+                        <action selector="tabKeyAction:" destination="cGy-Kv-z3R" id="J9O-qf-AXT"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

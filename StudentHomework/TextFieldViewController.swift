@@ -28,6 +28,18 @@ class TextFieldViewController: UIViewController, UITextFieldDelegate, UIImagePic
     
     @IBOutlet weak var bioConstraintTopToView: NSLayoutConstraint!
     
+    @IBAction func tabKeyAction(_ sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
+    }
+    
+    @IBAction func returnName(_ sender: UITextField) {
+        sender.resignFirstResponder()
+    }
+    
+    @IBAction func returnBio(_ sender: UITextField) {
+        sender.resignFirstResponder()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
        registerForKeyboardNotification()
@@ -40,14 +52,18 @@ class TextFieldViewController: UIViewController, UITextFieldDelegate, UIImagePic
         photoImage.image = newStudent?.image
         nameTextField.placeholder = "  Name"
         bioTextField.placeholder = " Short bio"
+     
+        UIScrollView.KeyboardDismissMode.onDrag
+     
+        
     }
 
    deinit {
       removeKeyboardNotifications()
     }
-    // получить 
+   
     
-    // Двигать контент клавиатурой
+    
     func registerForKeyboardNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(kbWillShow), name: UIResponder.keyboardWillShowNotification, object: nil )
         NotificationCenter.default.addObserver(self, selector: #selector(kbWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -58,8 +74,11 @@ class TextFieldViewController: UIViewController, UITextFieldDelegate, UIImagePic
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
    
+   
+    
     //смещение на величину
     @objc func kbWillShow(_ notification: Notification) {
+        
         let userInfosize = notification.userInfo
        
         guard let userInfo = notification.userInfo,
@@ -70,19 +89,19 @@ class TextFieldViewController: UIViewController, UITextFieldDelegate, UIImagePic
             // величина смещения контента
             let displace = UIScreen.main.bounds.size.height - (keyboardSize.height + bioConstraintTopToView.constant + bioTextField.frame.size.height)
             scrollView.frame.origin.y = displace
-            // scrollView.contentOffset = CGPoint(x: 0, y: bioTextField.frame.size.height)
+            
+            //scrollView.contentOffset = CGPoint(x: 0, y: bioTextField.frame.size.height)
         }
         
     }
     
+    
     @objc func kbWillHide () {
+        
         self.scrollView.frame.origin.y = 0
     }
     
-    
-    
-    
-    
+
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         true
@@ -104,7 +123,6 @@ func textFieldDidChangeSelection(_ textField: UITextField) {}
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {true}// called when clear button pressed. return NO to ignore (no notifications)
 
-func textFieldShouldReturn(_ textField: UITextField) -> Bool { true}// called when 'return' key pressed. return NO to ignore.
 
     @IBAction func saveButton(_ sender: Any) {
         let newName = nameTextField.text ?? ""
