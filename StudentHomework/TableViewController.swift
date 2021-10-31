@@ -5,24 +5,8 @@ import UIKit
 
 class TableViewController: UIViewController, UITableViewDelegate, StudentsList {
     
-    
-    func makeStudentsList(student: Student) {
-        studentsArray.append(student)
-        print("makeStudentsList!!!")
-        myTableView.reloadData()
-    }
-    
-    func updateStudent(_ student: Student, atIndex: Int) {
-        studentsArray[atIndex] = student
-        myTableView.reloadData()
-    }
-   /* func bidNavigationBar() {
-        navigationController?.navigationBar.prefersLargeTitles = true
-    }
-    */
-    
     @IBOutlet weak var myTableView: UITableView!
-    
+var string = "g"
     var studentsArray = [Student(name: "Olivia", bio: "born in 1992", image:              UIImage(named: "OliviaKing.png")!),
                     Student(name: "Freddy", bio: "born in 1991", image: UIImage(named: "FreddyWalker.png")!),
                                Student(name: "Liam", bio: "born in 1993", image: UIImage(named: "LiamEvans.png")!),
@@ -34,12 +18,14 @@ class TableViewController: UIViewController, UITableViewDelegate, StudentsList {
                                Student(name: "Wendy", bio: "born in 1993", image: UIImage(named: "WendyCampbell.png")!),
                                Student(name: "Amelia", bio: "born in 1993", image: UIImage(named: "AmeliaSmith.png")!)]
     private var filteredStudentsArray = [Student]()
-    
+   
     private let search = UISearchController(searchResultsController: nil)
+    
     private var searchBarIsEmpty : Bool {
         guard let text = search.searchBar.text else { return false }
         return text.isEmpty
     }
+   
     private var isFiltering: Bool {
         return search.isActive && !searchBarIsEmpty
     }
@@ -47,7 +33,6 @@ class TableViewController: UIViewController, UITableViewDelegate, StudentsList {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     //   bidNavigationBar()
         myTableView.rowHeight = 94
         search.searchResultsUpdater = self
         search.obscuresBackgroundDuringPresentation = false
@@ -61,19 +46,28 @@ class TableViewController: UIViewController, UITableViewDelegate, StudentsList {
         myTableView.dataSource = self
         myTableView.delegate = self
         
-        
+    
         let myAddButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addStudent))
         navigationItem.rightBarButtonItem = myAddButton
        
         }
+    
+    func makeStudentsList(student: Student) {
+        studentsArray.append(student)
+        print("makeStudentsList!!!")
+        myTableView.reloadData()
+    }
+    
+    func updateStudent(_ student: Student, atIndex: Int) {
+        studentsArray[atIndex] = student
+        myTableView.reloadData()
+    }
+    
     @objc func addStudent () {
         let newVC = storyboard?.instantiateViewController(withIdentifier: "TextFieldViewController") as? TextFieldViewController
        navigationController?.pushViewController(newVC!, animated: true)
         newVC!.delegate = self
-        
-        
     }
-    
     
     @IBAction func showCellNumber(_ sender: UIButton) {
         let point = myTableView.convert(CGPoint.zero, from: sender)
@@ -82,11 +76,9 @@ class TableViewController: UIViewController, UITableViewDelegate, StudentsList {
         print(numberCell)
             }
     
-    
     //количество секций
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
-        
     }
     
     //название секции
@@ -94,16 +86,10 @@ class TableViewController: UIViewController, UITableViewDelegate, StudentsList {
         return ""
     }
     
-    
-    
-    
-    
     // размер ячейки
     private func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) -> CGFloat {
         return 100.0
     }
-    
-    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("\(indexPath.row)") //нажатие на ячейку
@@ -121,17 +107,13 @@ class TableViewController: UIViewController, UITableViewDelegate, StudentsList {
         
         newVC?.studentIndex = indexPath.row
     }
-
-
 }
-
 
 struct Student {
     var name: String
     var bio: String
     var image: UIImage
 }
-
 
 extension TableViewController : UITableViewDataSource {
     // количество ячеек в секции
@@ -161,6 +143,7 @@ extension TableViewController : UITableViewDataSource {
         return cell
     }
 }
+
 extension TableViewController : UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearch(searchController.searchBar.text!)
@@ -171,6 +154,4 @@ extension TableViewController : UISearchResultsUpdating {
         })
         myTableView.reloadData()
     }
-    
-    
 }

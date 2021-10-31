@@ -11,8 +11,7 @@ class FirstViewController: UIViewController{
     
     @IBOutlet weak var startButton: UIButton!
     
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         startButton.frame = CGRect(x: 0, y: 0, width: 48, height: 16)
